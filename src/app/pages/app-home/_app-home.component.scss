@@ -1,0 +1,7 @@
+@import "../../../assets/style/setup/functions";
+@import "../../../assets/style/setup/variables";
+
+.home-page{
+    min-height: 74vh;
+    background-color: lighten($clrb, $amount: 10%);
+}

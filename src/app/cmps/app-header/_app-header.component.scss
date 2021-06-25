@@ -1,0 +1,22 @@
+@import "../../../assets/style/setup/functions";
+@import "../../../assets/style/setup/variables";
+
+header {
+    padding: rem(30px);
+    background-color: $clrb;
+    justify-content: center;
+    .nav-bar {
+        min-width: 80%;
+        align-items: center;
+        .links-container {
+            width: 100%;
+            justify-content: space-between;
+        }
+        ul {
+            align-items: center;
+            *:not(:last-child) {
+                margin-inline-end: rem(18px);
+            }
+        }
+    }
+}

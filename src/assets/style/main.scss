@@ -1,0 +1,18 @@
+//SETUP
+@import "./setup/variables";
+@import "./setup/mixins";
+@import "./setup/typography";
+@import "./setup/functions";
+
+//BASICS
+@import "./basics/base";
+@import "./basics/helpers";
+@import "./basics/layout";
+
+//COMPONENTS
+@import "../../app/cmps/app-header/app-header.component";
+@import "../../app/cmps/app-footer/app-footer.component";
+
+//VIEWS
+@import "../../app/pages/app-home/app-home.component";
+@import "../../app/pages/mister-dex/mister-dex.component";

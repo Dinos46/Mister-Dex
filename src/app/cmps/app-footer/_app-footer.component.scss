@@ -1,0 +1,9 @@
+@import "../../../assets/style/setup/variables";
+@import "../../../assets/style/setup/functions";
+
+footer {
+    padding: rem(10px);
+    align-items: center;
+    justify-content: center;
+    background-color: $clrb;
+}
