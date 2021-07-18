@@ -21,6 +21,7 @@
     "@ngrx/effects": "^12.1.0",
     "@ngrx/store": "^12.1.0",
     "@ngrx/store-devtools": "^12.1.0",
+    "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

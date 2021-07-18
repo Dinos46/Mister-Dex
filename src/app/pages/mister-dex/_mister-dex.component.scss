@@ -4,5 +4,6 @@
 .mister-dex {
     min-height: 68vh;
     background-color: lighten($clrb, $amount: 10%);
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
+    padding: rem(14px);
+    
 }

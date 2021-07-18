@@ -1,0 +1,26 @@
+@import "../../../assets/style/setup/variables";
+@import "../../../assets/style/setup/functions";
+
+.filter {
+    padding: rem(15px);
+    align-items: center;
+    justify-content: center;
+    > * {
+        margin-inline-end: rem(10px);
+    }
+    label,
+    select,
+    input {
+        font-size: rem(18px);
+        outline: none;
+        border: none;
+    }
+
+    input,
+    select {
+        padding: rem(5px);
+        border-radius: rem(8px);
+        background-color: $clrw;
+        color: $clrb;
+    }
+}

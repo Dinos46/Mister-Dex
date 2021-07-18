@@ -1,0 +1,23 @@
+@import "../../../assets/style/setup/functions";
+@import "../../../assets/style/setup/variables";
+
+.card {
+    padding: 0 rem(10px) rem(10px);
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid darken($clrw, $amount: 20%);
+    
+    .txt-container {
+        flex-direction: column;
+        align-items: center;
+        *:not(:first-child){
+            color: darken($clrw, $amount: 10%);
+        }
+        .name {
+            font-family: $fontB;
+            font-size: rem(20px);
+            text-transform: capitalize;
+        }
+    }
+}

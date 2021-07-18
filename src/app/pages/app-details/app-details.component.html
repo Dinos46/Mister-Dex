@@ -1,0 +1,53 @@
+<article class="pokemon">
+    <div class="content-container grid">
+        <div class="img-container flex">
+            <img [src]="poke.sprites.front_default" [alt]="poke.name">
+            <img [src]="poke.sprites.back_default" [alt]="poke.name">
+            <img [src]="poke.sprites.front_shiny" [alt]="poke.name">
+            <img [src]="poke.sprites.back_shiny" [alt]="poke.name">
+        </div>
+        <div class="details-container">
+            <h2>{{poke.name}}</h2>
+            <span>height: {{poke.height}}"</span>
+            <span>weight: {{poke.weight}}"</span>
+            <div class="type flex">
+                <span>type: </span>
+                <span [class]="poke?.types[0]?.type?.name">{{poke?.types[0]?.type?.name}}</span>
+                <span *ngIf="poke?.types[1]" [class]="poke?.types[1]?.type?.name">{{poke?.types[1]?.type?.name}}</span>
+            </div>
+        </div>
+        <div class="stats-container">
+            <h2>basic stats</h2>
+            <span>
+                {{poke?.stats[0]?.stat.name}}:
+                {{poke?.stats[0]?.base_stat}},
+            </span>
+            <span>
+                {{poke?.stats[1]?.stat.name}}:
+                {{poke?.stats[1]?.base_stat}},
+            </span>
+            <span>
+                {{poke?.stats[2]?.stat.name}}:
+                {{poke?.stats[2]?.base_stat}},
+            </span>
+            <span>
+                {{poke?.stats[3]?.stat.name}}:
+                {{poke?.stats[3]?.base_stat}},
+            </span>
+            <br />
+            <span>
+                {{poke?.stats[4]?.stat.name}}:
+                {{poke?.stats[4]?.base_stat}},
+            </span>
+            <span>
+                 {{poke?.stats[5]?.stat.name}}:
+                {{poke?.stats[5]?.base_stat}}
+            </span>
+        </div>
+        <div class="btn-container flex">
+            <button class="btn back" (click)="goBack()">go back</button>
+            <button class="btn edit">edit</button>
+            <button class="btn delete" (click)="removePoke(poke.id)">delete</button>
+        </div>
+    </div>
+</article>

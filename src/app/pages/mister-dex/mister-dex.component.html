@@ -1,3 +1,7 @@
-<section class="mister-dex grid">
-    <app-list [pokes]="pokes"></app-list>
+<section class="mister-dex">
+    <div class="error-msg" *ngIf="error$ | async">{{error$ | async}} </div>
+    <div *ngIf="isLoading$ | async" else="pokeList">Loading...</div>
+    <app-filter (setFilter)="onSetFilter($event)" [filterBy]="filterBy">
+    </app-filter>
+    <app-list #pokeList [pokes]="pokes"></app-list>
 </section>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon';
 
 @Component({
@@ -8,11 +8,17 @@ import { Pokemon } from 'src/app/models/pokemon';
 })
 export class AppListComponent implements OnInit {
   @Input() pokes: Pokemon[] | null = []
+  @Output() removed = new EventEmitter<string>()
+  page: 1;
+  total: 1118;
 
   constructor() { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { }
+
+  removePoke(pokeId: string) {
+    console.log('PokeList Emitting removed to Parent');
+    this.removed.emit('' + pokeId)
   }
 
 }

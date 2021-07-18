@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon';
 import { HttpClient } from '@angular/common/http';
 import { storageService } from './async-storage.service';
-import { PokeState } from '../store/reducers/poke.reducer'; 
-import { LoadPokes } from '../store/actions/poke.actions';
+import { PokeState } from '../store/reducers/poke.reducer';
+import { IsDoneAction, LoadingPokes, LoadPokes } from '../store/actions/poke.actions';
+import { Filter } from '../models/filter';
 
 
 @Injectable({
@@ -15,37 +15,50 @@ import { LoadPokes } from '../store/actions/poke.actions';
 export class PokeServiceService {
   KEY = 'pokemon'
   URL = 'https://pokeapi.co/api/v2/pokemon/'
-  
+
   constructor(
     private http: HttpClient,
     private store: Store<PokeState>
-    ) {
-      const pokes = JSON.parse(localStorage.getItem(this.KEY) || 'null');
-      if (!pokes || pokes.length === 0) {
-        this.getDataFromApi()
-      }
+  ) {
+    const pokes = JSON.parse(localStorage.getItem(this.KEY) || 'null');
+    if (!pokes || pokes.length === 0) {
+      this._getDataFromApi()
     }
-    
-  query(filterBy = ''): Observable<any> {
-    // this.store.dispatch(new LoadPokes());
-    // console.log('ItemService: Return Items ===> effect');
-    
-    return from(storageService.query(this.KEY) as Promise<any[]>)
   }
 
-  async getDataFromApi() {
+  query(filterBy: Filter = null): Observable<Pokemon[]> {
+    console.log(filterBy)
+    this.store.dispatch(new LoadingPokes());
+    console.log('pokeService: Return pokes ===> effect');
+    let pokes = storageService.query(this.KEY, filterBy)
+    return from(pokes as Promise<Pokemon[]>)
+  }
+
+  getByName(pokeName: string) {
+    console.log('PokeService: Return pokemon ===> effect');
+    return from(storageService.get(this.KEY, pokeName) as Promise<any>)
+  }
+
+  remove(pokeId: number): Observable<boolean> {
+    console.log('PokeService: Removing pokemon ===> effect');
+    return from(storageService.remove(this.KEY, pokeId))
+  }
+
+  // save(poke: Pokemon): Observable<any> {
+  //   const method = (poke.id) ? 'put' : 'post'
+  //   const prmSavedpoke = storageService[method](this.KEY, poke)
+  //   console.log('ItemService: Saving Item ===> effect');
+  //   return from(prmSavedpoke) as Observable<any>
+  // }
+
+  async _getDataFromApi() {
     const data: any = []
-    POKEMON.map(poke=>data.push(poke.url))
-    const pokePrms = await data.map((url: any)=>{
-      return this.http.get(url).toPromise()
-    })
-    Promise.all(pokePrms).then((res: any)=>{
-      localStorage.setItem(this.KEY, JSON.stringify(res))
-    })
+    const pokesUrl: any = await this.http.get(this.URL).toPromise()
+    pokesUrl.results.map(async (poke: any) => {
+      const pokes = await this.http.get(poke.url).toPromise()
+      data.push(pokes)
+      data.sort((a: any, b: any) => a.id - b.id)
+      localStorage.setItem(this.KEY, JSON.stringify(data))
+    });
   }
 }
-
-
-const POKEMON = [
-  { "name": "bulbasaur", "url": "https://pokeapi.co/api/v2/pokemon/1/" }, { "name": "ivysaur", "url": "https://pokeapi.co/api/v2/pokemon/2/" }, { "name": "venusaur", "url": "https://pokeapi.co/api/v2/pokemon/3/" }, { "name": "charmander", "url": "https://pokeapi.co/api/v2/pokemon/4/" }, { "name": "charmeleon", "url": "https://pokeapi.co/api/v2/pokemon/5/" }, { "name": "charizard", "url": "https://pokeapi.co/api/v2/pokemon/6/" }, { "name": "squirtle", "url": "https://pokeapi.co/api/v2/pokemon/7/" }, { "name": "wartortle", "url": "https://pokeapi.co/api/v2/pokemon/8/" }, { "name": "blastoise", "url": "https://pokeapi.co/api/v2/pokemon/9/" }, { "name": "caterpie", "url": "https://pokeapi.co/api/v2/pokemon/10/" }, { "name": "metapod", "url": "https://pokeapi.co/api/v2/pokemon/11/" }, { "name": "butterfree", "url": "https://pokeapi.co/api/v2/pokemon/12/" }, { "name": "weedle", "url": "https://pokeapi.co/api/v2/pokemon/13/" }, { "name": "kakuna", "url": "https://pokeapi.co/api/v2/pokemon/14/" }, { "name": "beedrill", "url": "https://pokeapi.co/api/v2/pokemon/15/" }, { "name": "pidgey", "url": "https://pokeapi.co/api/v2/pokemon/16/" }, { "name": "pidgeotto", "url": "https://pokeapi.co/api/v2/pokemon/17/" }, { "name": "pidgeot", "url": "https://pokeapi.co/api/v2/pokemon/18/" }, { "name": "rattata", "url": "https://pokeapi.co/api/v2/pokemon/19/" }, { "name": "raticate", "url": "https://pokeapi.co/api/v2/pokemon/20/" }
-] 

@@ -1,0 +1,14 @@
+<section class="filter flex">
+    <label for="search">
+        Filter
+        <input type="text" name="name" autocomplete="off" placeholder="Pokemon name..." [(ngModel)]="filterByCopy.name"
+            (ngModelChange)="setFilter.emit(filterByCopy)">
+    </label>
+    <label for="drop-down">Filter by type</label>
+    <select class="drop-down" name="types" [(ngModel)]="filterByCopy.type"
+        (ngModelChange)="setFilter.emit(filterByCopy)">
+        <option *ngFor="let type of types" [value]="type">
+            {{type}}
+        </option>
+    </select>
+</section>

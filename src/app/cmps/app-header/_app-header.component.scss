@@ -5,12 +5,18 @@ header {
     padding: rem(30px);
     background-color: $clrb;
     justify-content: center;
+    .active{
+        color: $clrr;
+    }
     .nav-bar {
         min-width: 80%;
         align-items: center;
         .links-container {
             width: 100%;
             justify-content: space-between;
+            h1 {
+                cursor: pointer;
+            }
         }
         ul {
             align-items: center;
