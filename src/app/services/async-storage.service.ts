@@ -18,11 +18,12 @@ async function query(entityType: string, filterBy: Filter = null, delay = 500): 
     var entities = JSON.parse(localStorage.getItem(entityType) || 'null') || []
 
     if (delay) {
+
+
         const filter = {
             name: filterBy?.name || '',
             type: filterBy?.type || ''
         }
-
         const regex = new RegExp(filter.name, "i");
         const filteredEntities = entities.filter((ent: any) => {
             return regex.test(ent.name) && ent.types[0]?.type?.name.includes(filter.type)
@@ -34,8 +35,10 @@ async function query(entityType: string, filterBy: Filter = null, delay = 500): 
 
 async function get(entityType: string, entityName: string): Promise<Entity> {
     const entities = await query(entityType)
+    console.log('DDDD', entities);
+
     const entity = entities.find(entity => entity.name === entityName)
-    if (!entity) throw new Error(`Cannot get, Item ${entityName} of type: ${entityType} does not exist`)
+    if (!entity) throw new Error(`Cannot get, Pokemon ${entityName} of type: ${entityType} does not exist`)
     return entity;
 }
 

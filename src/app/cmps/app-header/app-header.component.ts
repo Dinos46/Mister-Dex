@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./_app-header.component.scss']
 })
 export class AppHeaderComponent implements OnInit {
+  isOpen = false
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onToggleMenu(): void {
+    this.isOpen = !this.isOpen
+  }
 }

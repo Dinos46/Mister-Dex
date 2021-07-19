@@ -3,15 +3,22 @@
 
 .pokemon {
     padding-block: rem(16px);
-    min-height: 75vh;
     .content-container {
         grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         .img-container {
             grid-column: 1/-1;
             grid-row: 1/2;
-            justify-content: space-between;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(200px, auto));
             img {
+                object-fit: cover;
+            }
+            .shiny-front,
+            .shiny-back,
+            .normal-front,
+            .normal-back {
                 width: 100%;
             }
         }
@@ -21,77 +28,24 @@
             h2 {
                 font-size: rem(22px);
                 text-transform: capitalize;
+                &:last-of-type {
+                    margin-block-start: rem(15px);
+                }
             }
             & > span {
                 color: darken($clrw, $amount: 16%);
                 margin-inline-end: rem(14px);
             }
-            .type {
-                color: darken($clrw, $amount: 16%);
-                span {
-                    margin-inline-end: rem(14px);
-                    &.grass {
-                        color: #76c437;
-                    }
-                    &.poison {
-                        color: #924593;
-                    }
-                    &.bug {
-                        color: #aaba1f;
-                    }
-                    &.dragon {
-                        color: #7a62e4;
-                    }
-                    &.electric {
-                        color: #fcbf1a;
-                    }
-                    &.fighting {
-                        color: #86371f;
-                    }
-                    &.ghost {
-                        color: #7e7ec1;
-                    }
-                    &.flying {
-                        color: #93a5f1;
-                    }
-                    &.fire {
-                        color: #ed400e;
-                    }
-                    &.ground {
-                        color: #d4b256;
-                    }
-                    &.ice {
-                        color: #afebff;
-                    }
-                    &.normal {
-                        color: #c6c0b8;
-                    }
-                    &.psychic {
-                        color: #ef588d;
-                    }
-                    &.water {
-                        color: #3194f6;
-                    }
-                    &.rock {
-                        color: #b49c52;
-                    }
-                }
-            }
         }
-        .stats-container {
-            grid-row: 3/4;
-            grid-column: 1/4;
-            *:not(:first-child) {
-                color: darken($clrw, $amount: 16%);
-            }
-        }
+
         .btn-container {
             flex-direction: column;
             grid-column: 4/6;
-            grid-row: 2/4;
-            align-self: center;
+            grid-row: 2/3;
+            * {
+                margin-block-start: rem(10px);
+            }
             .edit {
-                margin-block: rem(32px);
                 background-color: $clrb;
                 transition: ease-in-out 0.2s;
                 &:hover {
@@ -110,6 +64,39 @@
                 &:hover {
                     background-color: lighten($clrr, $amount: 10%);
                 }
+            }
+        }
+    }
+    @media screen and(max-width: $narrow-breakpoint) {
+        .content-container {
+            grid-template-rows: repeat(auto, 250px);
+            grid-template-columns: repeat(1, 1fr);
+            align-items: center;
+            .btn-container {
+                grid-column: 1/6;
+                grid-row: 3/4;
+                flex-direction: row;
+                button,
+                button.edit {
+                    width: 100%;
+                    margin-inline-end: rem(10px);
+                }
+            }
+        }
+    }
+    @media screen and(max-width: $mobile-breakpoint) {
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            .img-container {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-container {
+                margin-block-start: rem(8px);
+                width: 100%;
+                flex-direction: column;
             }
         }
     }

@@ -57,9 +57,11 @@ export function reducer(state: PokeState = initialState, action: any): PokeState
         }
         case UPDATED_POKE: {
             const { poke } = action;
+            console.log('REDUCER', poke);
+
             // console.log('Reducer: Updating item:', poke);
             const pokes = state.pokes.map(currPoke => (currPoke.id === poke.id) ? poke : currPoke)
-            return { ...state, pokes, poke: null, error: '' };
+            return { ...state, pokes, poke, error: '' };
         }
         default:
             return state

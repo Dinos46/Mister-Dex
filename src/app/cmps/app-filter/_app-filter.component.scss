@@ -17,10 +17,18 @@
     }
 
     input,
-    select {
+    select,
+    option {
         padding: rem(5px);
         border-radius: rem(8px);
         background-color: $clrw;
         color: $clrb;
+    }
+    @media screen and(max-width: $narrow-breakpoint) {
+        flex-direction: column;
+        align-items: flex-start;
+        label[for="drop-down"] {
+            margin-block-start: rem(15px);
+        }
     }
 }

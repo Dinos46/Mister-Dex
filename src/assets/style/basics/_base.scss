@@ -36,6 +36,7 @@ h6 {
     min-width: rem(40px);
     border-radius: rem(15px);
     padding: rem(14px);
+    transition: ease-in-out 0.25s;
 }
 
 a {
@@ -47,11 +48,61 @@ a {
     }
 }
 
-// img {
-//     width: 100%;
-//     height: 100%;
-// }
+img {
+    width: 100%;
+}
 
 ul {
     list-style-type: none;
+}
+.type {
+    color: darken($clrw, $amount: 16%);
+    span {
+        margin-inline-end: rem(14px);
+        &.grass {
+            color: #76c437;
+        }
+        &.poison {
+            color: #924593;
+        }
+        &.bug {
+            color: #aaba1f;
+        }
+        &.dragon {
+            color: #7a62e4;
+        }
+        &.electric {
+            color: #fcbf1a;
+        }
+        &.fighting {
+            color: #86371f;
+        }
+        &.ghost {
+            color: #7e7ec1;
+        }
+        &.flying {
+            color: #93a5f1;
+        }
+        &.fire {
+            color: #ed400e;
+        }
+        &.ground {
+            color: #d4b256;
+        }
+        &.ice {
+            color: #afebff;
+        }
+        &.normal {
+            color: #c6c0b8;
+        }
+        &.psychic {
+            color: #ef588d;
+        }
+        &.water {
+            color: #3194f6;
+        }
+        &.rock {
+            color: #b49c52;
+        }
+    }
 }

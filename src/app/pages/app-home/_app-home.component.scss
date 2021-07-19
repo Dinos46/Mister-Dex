@@ -8,11 +8,14 @@
     min-height: 74vh;
     background-color: lighten($clrb, $amount: 10%);
     padding: rem(20px);
-    img {
-        width: 35%;
+    .img-container {
+        max-width: 265px;
     }
     h1 {
         font-size: rem(26px);
         text-transform: capitalize;
+    }
+    .link:hover {
+        background-color: lighten($clrr, $amount: 10%);
     }
 }

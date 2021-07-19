@@ -1,0 +1,10 @@
+<div *ngIf="!poke">Loading.......</div>
+<section *ngIf="poke" class="app-edit flex">
+    <form class="flex" (ngSubmit)="onUpDatePokemon()">
+        <label for="name">
+            Pokemon name
+        </label>
+        <input type="text" name="name" [(ngModel)]="pokeName">
+        <button class="btn">Save</button>
+    </form>
+</section>

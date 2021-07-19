@@ -14,7 +14,6 @@ import { Filter } from 'src/app/models/filter';
 })
 export class MisterDexComponent implements OnInit {
   pokes$: Observable<Pokemon[]>
-  poke$: Observable<Pokemon | null>
   filterBy: Filter | null
   pokes: Pokemon[]
   isLoading$: Observable<boolean>
@@ -22,7 +21,6 @@ export class MisterDexComponent implements OnInit {
 
   constructor(private store: Store<State>) {
     this.pokes$ = this.store.select('pokeState').pipe(pluck('pokes'));
-    this.poke$ = this.store.select('pokeState').pipe(pluck('poke'));
     this.isLoading$ = this.store.select('pokeState').pipe(pluck('isLoading'));
     this.error$ = this.store.select('pokeState').pipe(pluck('error'));
     this.filterBy = { name: '', type: '' }

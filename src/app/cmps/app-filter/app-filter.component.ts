@@ -12,6 +12,7 @@ export class AppFilterComponent implements OnInit {
   @Output() setFilter = new EventEmitter<Filter>()
   filterByCopy: Filter
   types = [
+    'all',
     'fire',
     'water',
     'grass',
@@ -28,10 +29,12 @@ export class AppFilterComponent implements OnInit {
   ]
 
   constructor() {
-    this.filterByCopy = { ...this.filterBy }
+    this.filterByCopy = { name: '', type: '' }
   }
 
   ngOnInit(): void {
+    console.log(this.filterBy);
+
   }
 
 }

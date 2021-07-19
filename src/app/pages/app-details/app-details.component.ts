@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon';
 import { IsDoneAction, RemovePoke } from 'src/app/store/actions/poke.actions';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/store';
 import { pluck } from 'rxjs/operators';
+
 
 
 @Component({
@@ -22,7 +22,6 @@ export class AppDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
     private router: Router,
     private store: Store<State>
   ) {
@@ -36,9 +35,12 @@ export class AppDetailsComponent implements OnInit {
   }
 
   removePoke(pokeId: number) {
-    console.log(pokeId)
     console.log('pokeApp: dispatching remove');
     this.store.dispatch(new RemovePoke(pokeId));
+  }
+
+  goToEditPage(pokeName: string) {
+    this.router.navigateByUrl(`/poke/edit/${pokeName}`)
   }
 
   goBack() {

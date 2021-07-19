@@ -91,28 +91,27 @@ export class AppEffects {
       ),
 
     );
-
   });
 
-  // saveItem$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(SAVE_POKE),
-  //     switchMap((action) =>
-  //       this.pokeService.save(action.poke).pipe(
-  //         tap(() => console.log('Effects: poke saved by service, inform the ===> Reducer')),
-  //         map((savedPoke) => ({
-  //           type: (action.poke.id) ? UPDATED_POKE : ADDED_POKE,
-  //           item: savedPoke,
-  //         })),
-  //         catchError((error) => {
-  //           console.log('Effect: Caught error ===> Reducer', error)
-  //           return of({
-  //             type: SET_ERROR,
-  //             error: error.toString(),
-  //           })
-  //         })
-  //       )
-  //     )
-  //   );
-  // })
+  savePoke$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SAVE_POKE),
+      switchMap((action) =>
+        this.pokeService.save(action.poke).pipe(
+          tap(() => console.log('Effects: poke saved by service, inform the ===> Reducer')),
+          map((savedPoke) => ({
+            type: (action.poke.id) ? UPDATED_POKE : ADDED_POKE,
+            poke: savedPoke,
+          })),
+          catchError((error) => {
+            console.log('Effect: Caught error ===> Reducer', error)
+            return of({
+              type: SET_ERROR,
+              error: error.toString(),
+            })
+          })
+        )
+      )
+    );
+  })
 }

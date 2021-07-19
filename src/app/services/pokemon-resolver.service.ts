@@ -13,6 +13,8 @@ export class PokemonResolverService implements Resolve<Observable<Pokemon>> {
 
   resolve(route: ActivatedRouteSnapshot) {
     const { name } = route.params
+    console.log('RESOLVE', this.PokeService.getByName(name));
+
     return this.PokeService.getByName(name)
   }
 }

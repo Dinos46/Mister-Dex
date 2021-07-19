@@ -8,13 +8,12 @@ import { PokeState } from '../store/reducers/poke.reducer';
 import { IsDoneAction, LoadingPokes, LoadPokes } from '../store/actions/poke.actions';
 import { Filter } from '../models/filter';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class PokeServiceService {
-  KEY = 'pokemon'
-  URL = 'https://pokeapi.co/api/v2/pokemon/'
+  KEY = 'pokemon';
+  URL = 'https://pokeapi.co/api/v2/pokemon?limit=10';
 
   constructor(
     private http: HttpClient,
@@ -27,7 +26,6 @@ export class PokeServiceService {
   }
 
   query(filterBy: Filter = null): Observable<Pokemon[]> {
-    console.log(filterBy)
     this.store.dispatch(new LoadingPokes());
     console.log('pokeService: Return pokes ===> effect');
     let pokes = storageService.query(this.KEY, filterBy)
@@ -44,12 +42,12 @@ export class PokeServiceService {
     return from(storageService.remove(this.KEY, pokeId))
   }
 
-  // save(poke: Pokemon): Observable<any> {
-  //   const method = (poke.id) ? 'put' : 'post'
-  //   const prmSavedpoke = storageService[method](this.KEY, poke)
-  //   console.log('ItemService: Saving Item ===> effect');
-  //   return from(prmSavedpoke) as Observable<any>
-  // }
+  save(poke: Pokemon): Observable<any> {
+    const method = (poke.id) ? 'put' : 'post'
+    const prmSavedpoke = storageService[method](this.KEY, poke)
+    console.log('PokeService: Saving Pokemon ===> effect');
+    return from(prmSavedpoke) as Observable<any>
+  }
 
   async _getDataFromApi() {
     const data: any = []

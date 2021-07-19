@@ -1,0 +1,28 @@
+@import "../../../assets/style/setup/functions";
+@import "../../../assets/style/setup/variables";
+
+.app-edit {
+    min-height: 80vh;
+    align-items: center;
+    justify-content: center;
+    form {
+        flex-direction: column;
+        width: 50%;
+        *:not(:first-child) {
+            margin-block-start: rem(10px);
+        }
+        input {
+            padding: rem(8px) rem(11px);
+            outline: none;
+            border: none;
+            border-radius: rem(8px);
+            font-size: rem(18px);
+        }
+        label {
+            font-size: rem(22px);
+        }
+        button:hover {
+            background-color: lighten($clrr, $amount: 10%);
+        }
+    }
+}
