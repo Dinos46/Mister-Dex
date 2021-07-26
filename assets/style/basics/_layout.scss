@@ -1,9 +1,9 @@
 .main-container {
     display: grid;
     grid-template-columns:
-        minmax(rem(80px), 1fr)
+        minmax(5%, 1fr)
         minmax(auto, $normal-breakpoint)
-        minmax(rem(80px), 1fr);
+        minmax(5%, 1fr);
 
     > * {
         grid-column: 2;
@@ -15,20 +15,20 @@
 
     @include for-narrow-layout {
         grid-template-columns:
-            minmax(rem(92px), 1fr)
+            minmax(3%, 1fr)
             minmax(auto, $mobile-breakpoint)
-            minmax(rem(92px), 1fr);
+            minmax(3%, 1fr);
     }
     @include for-normal-layout {
         grid-template-columns:
-            minmax(rem(92px), 1fr)
+            minmax(5%, 1fr)
             minmax(auto, $narrow-breakpoint)
-            minmax(rem(92px), 1fr);
+            minmax(5%, 1fr);
     }
     @include for-wide-layout {
         grid-template-columns:
-            minmax(rem(92px), 1fr)
+            minmax(5%, 1fr)
             minmax(auto, $normal-breakpoint)
-            minmax(rem(92px), 1fr);
+            minmax(5%, 1fr);
     }
 }
